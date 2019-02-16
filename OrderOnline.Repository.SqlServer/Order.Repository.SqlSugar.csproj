@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="sqlSugarCore" Version="4.9.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OOL.Core\Order.Core.Common.csproj" />
     <ProjectReference Include="..\OrderOnline.DataEntity\Order.DataEntity.csproj" />
     <ProjectReference Include="..\OrderOnline.IRepository\Order.IRepository.csproj" />
   </ItemGroup>

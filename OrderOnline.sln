@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{A608FCF3-88F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{4771C3E8-2418-4EBC-82E1-9614AC853D51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Core", "OOL.Core\Order.Core.csproj", "{C8A3068B-0531-452A-9024-E0D3F601B4D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Core.Common", "OOL.Core\Order.Core.Common.csproj", "{C8A3068B-0531-452A-9024-E0D3F601B4D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{CA4334D7-AB44-4D80-858C-70D92934F5F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.IRepository", "OrderOnline.IRepository\Order.IRepository.csproj", "{C467650A-337A-4003-8971-64DB7D066DE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Repository.SqlServer", "OrderOnline.Repository.SqlServer\Order.Repository.SqlServer.csproj", "{C6408A5A-1BD2-44B9-A2BE-D17283EA70BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Repository.SqlSugar", "OrderOnline.Repository.SqlServer\Order.Repository.SqlSugar.csproj", "{C6408A5A-1BD2-44B9-A2BE-D17283EA70BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{752DF1A8-37E3-4643-89C8-5BA23604C8B1}"
 EndProject
