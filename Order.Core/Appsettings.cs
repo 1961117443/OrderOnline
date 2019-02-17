@@ -26,12 +26,13 @@ namespace Order.Core.Common
                     val += sections[i] + ":";
                 }
                 return app(val.TrimEnd(':'));
-            }
-            catch (Exception)
+        }
+            catch (Exception EX)
             {
+                Console.WriteLine(EX);
                 return "";
             }
-        }
+}
 
         public static string app(string key)
         {

@@ -4,11 +4,15 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\OrderOnline\bin\Debug</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
+    <ProjectReference Include="..\Order.DataEntity\Order.DataEntity.csproj" />
+    <ProjectReference Include="..\Order.IRepository\Order.IRepository.csproj" />
     <ProjectReference Include="..\Order.IService\Order.IService.csproj" />
-    <ProjectReference Include="..\OrderOnline.DataEntity\Order.DataEntity.csproj" />
-    <ProjectReference Include="..\OrderOnline.IRepository\Order.IRepository.csproj" />
-    <ProjectReference Include="..\OrderOnline.ViewEntity\Order.ViewEntity.csproj" />
+    <ProjectReference Include="..\Order.ViewEntity\Order.ViewEntity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 using Order.IService;
 using Order.Service.BASE;
 
-namespace Order.IService
+namespace Order.Service
 {
     public class PackingService : BaseService<Packing>, IPackingService
     {

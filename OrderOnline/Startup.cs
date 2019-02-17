@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +25,7 @@ namespace OrderOnline
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -32,6 +36,24 @@ namespace OrderOnline
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            #region Autofac IOC容器
+            var builder = new ContainerBuilder();
+            string basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+
+            string dllPath = Path.Combine(basePath, "Order.Service.dll");
+            Assembly assembly = Assembly.LoadFile(dllPath);
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            dllPath = Path.Combine(basePath, "Order.Repository.SqlSugarProvider.dll");
+            assembly = Assembly.LoadFile(dllPath);
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.Populate(services);
+            var container = builder.Build();
+            var provider = new AutofacServiceProvider(container);
+            #endregion
+            return provider;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

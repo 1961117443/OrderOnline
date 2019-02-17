@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrderOnline.DataEntity\Order.DataEntity.csproj" />
+    <ProjectReference Include="..\Order.DataEntity\Order.DataEntity.csproj" />
   </ItemGroup>
 
 </Project>

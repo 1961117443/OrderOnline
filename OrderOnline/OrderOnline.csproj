@@ -7,15 +7,26 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\OOL.Core\Order.Core.Common.csproj" />
+    <ProjectReference Include="..\Order.Core\Order.Core.Common.csproj" />
+    <ProjectReference Include="..\Order.IRepository\Order.IRepository.csproj" />
     <ProjectReference Include="..\Order.IService\Order.IService.csproj" />
-    <ProjectReference Include="..\OrderOnline.ViewEntity\Order.ViewEntity.csproj" />
+    <ProjectReference Include="..\Order.Repository.SqlServer\Order.Repository.SqlSugarProvider.csproj" />
+    <ProjectReference Include="..\Order.ViewEntity\Order.ViewEntity.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

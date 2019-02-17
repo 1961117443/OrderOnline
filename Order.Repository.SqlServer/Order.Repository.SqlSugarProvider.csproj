@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Order.Repository.SqlSugarProvider</AssemblyName>
+    <RootNamespace>Order.Repository.SqlSugarProvider</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\OrderOnline\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlSugarCore" Version="4.9.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Order.Core\Order.Core.Common.csproj" />
+    <ProjectReference Include="..\Order.DataEntity\Order.DataEntity.csproj" />
+    <ProjectReference Include="..\Order.IRepository\Order.IRepository.csproj" />
+  </ItemGroup>
+
+</Project>
