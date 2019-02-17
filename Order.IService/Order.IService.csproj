@@ -9,8 +9,4 @@
     <ProjectReference Include="..\Order.ViewEntity\Order.ViewEntity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Sys\" />
-  </ItemGroup>
-
 </Project>

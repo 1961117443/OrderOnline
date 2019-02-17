@@ -1,0 +1,94 @@
+[
+  {
+    "Item": {
+      "Id": 1,
+      "ParentId": 0,
+      "Name": "systemeSttings",
+      "DisplayName": "Setting",
+      "IconUrl": "",
+      "LinkUrl": "",
+      "Spread": false
+    },
+    "Children": [
+      {
+        "Item": {
+          "Id": 12,
+          "ParentId": 1,
+          "Name": "contentManagement1",
+          "DisplayName": "Content1",
+          "IconUrl": "",
+          "LinkUrl": "",
+          "Spread": false,
+          "Target": ""
+        },
+        "Children": [
+          {
+            "Item": {
+              "Id": 121,
+              "ParentId": 12,
+              "Name": "contentManagement2",
+              "DisplayName": "Content2",
+              "IconUrl": "",
+              "LinkUrl": "",
+              "Spread": false,
+              "Target": ""
+            },
+            "Children": []
+          },
+          {
+            "Item": {
+              "Id": 131,
+              "ParentId": 12,
+              "Name": "seraphApi2",
+              "DisplayName": "Api2",
+              "IconUrl": "",
+              "LinkUrl": "",
+              "Spread": false,
+              "Target": ""
+            },
+            "Children": []
+          }
+        ]
+      },
+      {
+        "Item": {
+          "Id": 13,
+          "ParentId": 1,
+          "Name": "seraphApi1",
+          "DisplayName": "Api1",
+          "IconUrl": "",
+          "LinkUrl": "",
+          "Spread": false,
+          "Target": ""
+        },
+        "Children": []
+      }
+    ]
+  },
+  {
+    "Item": {
+      "Id": 2,
+      "ParentId": 0,
+      "Name": "contentManagement",
+      "DisplayName": "Content",
+      "IconUrl": "",
+      "LinkUrl": "",
+      "Spread": false,
+      "Target": ""
+    },
+    "Children": []
+  },
+  {
+    "Item": {
+      "Id": 3,
+      "ParentId": 0,
+      "Name": "seraphApi",
+      "DisplayName": "Api",
+      "IconUrl": "",
+      "LinkUrl": "",
+      "Spread": false,
+      "Target": ""
+    },
+    "Children": []
+  }
+]

@@ -6,26 +6,51 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Order.Core.Common.Extensions;
+using Order.Core.Common.Helper;
+using Order.Core.Common.Models;
 using Order.DataEntity;
 using Order.IRepository;
-using Order.IService; 
+using Order.IService;
+using Order.ViewEntity;
 using OrderOnline.Models;
 
 namespace OrderOnline.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        protected readonly ISalesOrderService _salesOrderService;
+        protected readonly ISalesOrderService salesOrderService;
+        protected readonly IManagerService managerService;
 
 
-        public HomeController(ISalesOrderService salesOrderService)
+        public HomeController(ISalesOrderService salesOrderService,IManagerService managerService)
         {
-            this._salesOrderService = salesOrderService;
+            this.salesOrderService = salesOrderService;
+            this.managerService = managerService;
         }
-        public async Task<IActionResult> Index()
-        { 
-            var  list= await this._salesOrderService.Query();
+        public IActionResult Index()
+        {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Main()
+        {
+            ViewData["LoginCount"] = "LoginCount";// User.Claims.FirstOrDefault(x => x.Type == "LoginCount")?.Value;
+            ViewData["LoginLastIp"] = "LoginLastIp";// User.Claims.FirstOrDefault(x => x.Type == "LoginLastIp")?.Value;
+            ViewData["LoginLastTime"] = "LoginLastTime";// User.Claims.FirstOrDefault(x => x.Type == "LoginLastTime")?.Value;
+            return View();
+        }
+
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <returns></returns>
+        public string GetMenu()
+        {
+            List<MenuNavView> menus = managerService.GetMenuByUserId(0);
+            var data = menus.GenerateTree(x => x.Id, x => x.ParentId);
+            return JsonHelper.ObjectToJSON(data);
         }
 
         public IActionResult Privacy()
