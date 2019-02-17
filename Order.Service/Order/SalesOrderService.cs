@@ -14,5 +14,6 @@ namespace Order.Service
             this.salesOrderDetailRepository = salesOrderDetailRepository;
         }
  
+        
     }
 }
