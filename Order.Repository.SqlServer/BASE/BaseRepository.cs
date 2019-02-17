@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Order.Repository.SqlSugar.BASE
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
     {
         private DbContext context;
         private SqlSugarClient db;

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Order.IRepository; 
 
 namespace OrderOnline
 {
@@ -37,23 +38,36 @@ namespace OrderOnline
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            //services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             #region Autofac IOC容器
+           
             var builder = new ContainerBuilder();
             string basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
-
+            
             string dllPath = Path.Combine(basePath, "Order.Service.dll");
             Assembly assembly = Assembly.LoadFile(dllPath);
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            dllPath = Path.Combine(basePath, "Order.Repository.SqlSugarProvider.dll");
+            dllPath = Path.Combine(basePath, "Order.Repository.SqlSugar.dll");
             assembly = Assembly.LoadFile(dllPath);
+
+            //通过这种方式进行注册，不能使用new创建对象 
+            //用这种方式就可以使用new//builder.RegisterType<SalesOrderRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //var t = assembly.GetTypes().FirstOrDefault(w=>w.Name== "SalesOrderRepository");
+            //if (t!=null)
+            //{
+            //    builder.RegisterType(t).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //}
+
 
             builder.Populate(services);
             var container = builder.Build();
             var provider = new AutofacServiceProvider(container);
-            #endregion
+            
             return provider;
+             
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

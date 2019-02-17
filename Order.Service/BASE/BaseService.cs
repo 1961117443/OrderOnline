@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Order.Service.BASE
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class, new()
+    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class, new()
     {
         protected IBaseRepository<TEntity> dal;
 

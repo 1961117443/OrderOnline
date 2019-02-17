@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace Order.DataEntity
         /// <summary>
         /// 订单日期
         /// </summary>
+        [SugarColumn(ColumnName ="OrderDate")]
         public string BillDate { get; set; }
         /// <summary>
         /// 客户id

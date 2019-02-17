@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Core.Common", "Order.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.IRepository", "Order.IRepository\Order.IRepository.csproj", "{92B7544D-4113-4674-8671-B8626214C199}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Repository.SqlSugarProvider", "Order.Repository.SqlServer\Order.Repository.SqlSugarProvider.csproj", "{E07D6F32-37E5-460F-B11F-F257AEB02564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Repository.SqlSugar", "Order.Repository.SqlServer\Order.Repository.SqlSugar.csproj", "{E07D6F32-37E5-460F-B11F-F257AEB02564}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.DataEntity", "Order.DataEntity\Order.DataEntity.csproj", "{E37B5C6C-57FE-4A5D-9C1E-2F1CD5160A59}"
 EndProject

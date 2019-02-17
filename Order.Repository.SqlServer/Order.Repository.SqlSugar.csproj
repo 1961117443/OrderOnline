@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AssemblyName>Order.Repository.SqlSugarProvider</AssemblyName>
-    <RootNamespace>Order.Repository.SqlSugarProvider</RootNamespace>
+    <AssemblyName>Order.Repository.SqlSugar</AssemblyName>
+    <RootNamespace>Order.Repository.SqlSugar</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -18,7 +18,6 @@
     <ProjectReference Include="..\Order.Core\Order.Core.Common.csproj" />
     <ProjectReference Include="..\Order.IRepository\Order.IRepository.csproj" />
     <ProjectReference Include="..\Order.IService\Order.IService.csproj" />
-    <ProjectReference Include="..\Order.Repository.SqlServer\Order.Repository.SqlSugarProvider.csproj" />
     <ProjectReference Include="..\Order.ViewEntity\Order.ViewEntity.csproj" />
   </ItemGroup>
 
