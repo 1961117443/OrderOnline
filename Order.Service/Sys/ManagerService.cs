@@ -55,21 +55,24 @@ namespace Order.Service
                 Id = 201,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "客户档案",
-                ParentId = 200
+                ParentId = 200,
+                LinkUrl = "/Customer/Index"
             });
             menus.Add(new MenuNavView()
             {
                 Id = 202,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "型材档案",
-                ParentId = 200
+                ParentId = 200,
+                LinkUrl = "/SectionBar/Index"
             });
             menus.Add(new MenuNavView()
             {
                 Id = 203,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "表面档案",
-                ParentId = 200
+                ParentId = 200,
+                LinkUrl = "/Surface/Index"
             });
             #endregion
             #region 订单管理
