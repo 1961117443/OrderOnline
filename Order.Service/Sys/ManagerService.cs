@@ -11,35 +11,37 @@ namespace Order.Service
         public List<MenuNavView> GetMenuByUserId(int userId)
         {
             List<MenuNavView> menus = new List<MenuNavView>();
+            #region 系统设置
             menus.Add(new MenuNavView()
             {
                 Id = 100,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "系统设置",
                 ParentId = 0
-            }); 
-            menus.Add(new MenuNavView()
-            {
-                Id = 101,
-                Name = Guid.NewGuid().ToString(),
-                DisplayName = "用户管理",
-                ParentId = 100,
-                LinkUrl = "/Manager/Index"
             });
-            menus.Add(new MenuNavView()
-            {
-                Id = 102,
-                Name = Guid.NewGuid().ToString(),
-                DisplayName = "角色管理",
-                ParentId = 100
-            });
-            menus.Add(new MenuNavView()
-            {
-                Id = 103,
-                Name = Guid.NewGuid().ToString(),
-                DisplayName = "权限分配",
-                ParentId = 100
-            });
+            //menus.Add(new MenuNavView()
+            //{
+            //    Id = 101,
+            //    Name = Guid.NewGuid().ToString(),
+            //    DisplayName = "用户管理",
+            //    ParentId = 100,
+            //    LinkUrl = "/Manager/Index"
+            //});
+            //menus.Add(new MenuNavView()
+            //{
+            //    Id = 102,
+            //    Name = Guid.NewGuid().ToString(),
+            //    DisplayName = "角色管理",
+            //    ParentId = 100
+            //});
+            //menus.Add(new MenuNavView()
+            //{
+            //    Id = 103,
+            //    Name = Guid.NewGuid().ToString(),
+            //    DisplayName = "权限分配",
+            //    ParentId = 100
+            //}); 
+            #endregion
             #region 基础资料
             menus.Add(new MenuNavView()
             {
@@ -84,14 +86,16 @@ namespace Order.Service
                 Id = 301,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "在线下单",
-                ParentId = 300
+                ParentId = 300,
+                LinkUrl = "/Order/AddOrModify"
             });
             menus.Add(new MenuNavView()
             {
                 Id = 302,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "销售订单",
-                ParentId = 300
+                ParentId = 300,
+                LinkUrl = "/Order/Index"
             });
             #endregion
             #region 报表管理
@@ -116,7 +120,38 @@ namespace Order.Service
                 DisplayName = "订单进度",
                 ParentId = 400
             });
-            #endregion 
+            #endregion
+            #region 权限管理
+            menus.Add(new MenuNavView()
+            {
+                Id = 500,
+                Name = Guid.NewGuid().ToString(),
+                DisplayName = "权限管理",
+                ParentId = 0
+            });
+            menus.Add(new MenuNavView()
+            {
+                Id = 501,
+                Name = Guid.NewGuid().ToString(),
+                DisplayName = "用户管理",
+                ParentId = 500,
+                LinkUrl = "/Manager/Index"
+            });
+            menus.Add(new MenuNavView()
+            {
+                Id = 502,
+                Name = Guid.NewGuid().ToString(),
+                DisplayName = "角色管理",
+                ParentId = 500
+            });
+            menus.Add(new MenuNavView()
+            {
+                Id = 503,
+                Name = Guid.NewGuid().ToString(),
+                DisplayName = "权限分配",
+                ParentId = 500
+            }); 
+            #endregion
             return menus;
         }
     }

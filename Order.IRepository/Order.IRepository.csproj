@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Order.DataEntity\Order.DataEntity.csproj" />
+    <ProjectReference Include="..\Order.ViewEntity\Order.ViewEntity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,13 @@
-﻿using SqlSugar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Order.DataEntity
+namespace Order.ViewEntity
 {
     /// <summary>
     /// 订单从表
     /// </summary>
-    public class SalesOrderDetail
+    public class SalesOrderDetailView
     {
         /// <summary>
         /// 主键id
@@ -21,20 +20,39 @@ namespace Order.DataEntity
         /// <summary>
         /// 订单跟踪号
         /// </summary>
-        [SugarColumn(ColumnName = "SalesOrderTraceCode")]
         public string TraceCode { get; set; }
         /// <summary>
         /// 型材型号id
         /// </summary>
         public Guid SectionBarID { get; set; }
+
+        /// <summary>
+        /// 型材型号
+        /// </summary>
+        public string SectionBarIDCode { get; set; }
+
+        /// <summary>
+        /// 型材名称
+        /// </summary>
+        public string SectionBarIDName { get; set; }
         /// <summary>
         /// 表面id
         /// </summary>
         public Guid SurfaceID { get; set; }
+
+        /// <summary>
+        /// 表面方式
+        /// </summary>
+        public string SurfaceIDName { get; set; }
+
         /// <summary>
         /// 包装id
         /// </summary>
         public Guid PackingID { get; set; }
+        /// <summary>
+        /// 包装方式
+        /// </summary>
+        public string PackingIDName { get; set; }
         /// <summary>
         /// 订单数
         /// </summary>

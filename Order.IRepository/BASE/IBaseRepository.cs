@@ -26,6 +26,12 @@ namespace Order.IRepository.BASE
         Task<bool> Update(TEntity entity, string strWhere);
         Task<bool> Update(TEntity entity, List<string> lstColumns = null, List<string> lstIgnoreColumns = null, string strWhere = "");
 
+
+        int GetRecordCount();
+        int GetRecordCount(Expression<Func<TEntity, bool>> whereExpression);
+        Task<int> GetRecordCountAsync();
+        Task<int> GetRecordCountAsync(Expression<Func<TEntity, bool>> whereExpression);
+
         Task<List<TEntity>> Query();
         Task<List<TEntity>> Query(string strWhere);
         Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression);

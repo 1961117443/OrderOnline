@@ -18,14 +18,12 @@ using OrderOnline.Models;
 namespace OrderOnline.Controllers
 {
     public class HomeController : BaseController
-    {
-        protected readonly ISalesOrderService salesOrderService;
+    { 
         protected readonly IManagerService managerService;
 
 
-        public HomeController(ISalesOrderService salesOrderService,IManagerService managerService)
-        {
-            this.salesOrderService = salesOrderService;
+        public HomeController(IManagerService managerService)
+        { 
             this.managerService = managerService;
         }
         public IActionResult Index()

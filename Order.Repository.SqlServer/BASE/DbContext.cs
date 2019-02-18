@@ -32,7 +32,6 @@ namespace Order.Repository.SqlSugar.BASE
         }
         /// <summary>
         /// 数据连接对象 
-        /// Blog.Core 
         /// </summary>
         public SqlSugarClient Db
         {
@@ -56,28 +55,9 @@ namespace Order.Repository.SqlSugar.BASE
 
         /// <summary>
         /// 功能描述:构造函数
-        /// 作　　者:Blog.Core
         /// </summary>
-        private DbContext()
-        {
-            if (string.IsNullOrEmpty(_connectionString))
-                throw new ArgumentNullException("数据库连接字符串为空");
-            _db = new SqlSugarClient(new ConnectionConfig()
-            {
-                ConnectionString = _connectionString,
-                DbType = _dbType,
-                IsAutoCloseConnection = true,
-                IsShardSameThread = true,
-                ConfigureExternalServices = new ConfigureExternalServices()
-                {
-                    //DataInfoCacheService = new HttpRuntimeCache()
-                },
-                MoreSettings = new ConnMoreSettings()
-                {
-                    //IsWithNoLockQuery = true,
-                    IsAutoRemoveDataCache = true
-                }
-            });
+        private DbContext():this(false)
+        { 
         }
 
         /// <summary>
@@ -94,7 +74,7 @@ namespace Order.Repository.SqlSugar.BASE
                 ConnectionString = _connectionString,
                 DbType = _dbType,
                 IsAutoCloseConnection = blnIsAutoCloseConnection,
-                IsShardSameThread = true,
+                IsShardSameThread = false,
                 ConfigureExternalServices = new ConfigureExternalServices()
                 {
                     //DataInfoCacheService = new HttpRuntimeCache()

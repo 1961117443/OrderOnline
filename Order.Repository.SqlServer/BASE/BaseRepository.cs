@@ -169,5 +169,25 @@ namespace Order.Repository.SqlSugar.BASE
         {
             return Task.Run(() => func());
         }
+
+        public int GetRecordCount()
+        {
+            return entityDB.Count(w => 1 == 1);
+        }
+
+        public int GetRecordCount(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return entityDB.Count(whereExpression);
+        }
+
+        public async Task<int> GetRecordCountAsync()
+        {
+            return await Task.Run(() => entityDB.Count(w => 1 == 1));
+        }
+
+        public async Task<int> GetRecordCountAsync(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return await Task.Run(() => entityDB.Count(whereExpression));
+        }
     }
 }
