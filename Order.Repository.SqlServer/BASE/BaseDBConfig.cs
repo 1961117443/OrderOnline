@@ -11,7 +11,7 @@ namespace Order.Repository.SqlSugar.BASE
 
         //正常格式是
 
-        public static string ConnectionString = "Server=.;Database=GZMModel;User ID=sa;Password=123456;";// Appsettings.app("AppSettings", "SqlServer", "ConnectionString"); 
+        public static string ConnectionString = "Server=.;Database=ERPGZMModel;User ID=sa;Password=123456;";// Appsettings.app("AppSettings", "SqlServer", "ConnectionString"); 
 
    
 

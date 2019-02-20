@@ -15,7 +15,7 @@ namespace Order.Service
     {
         protected readonly ISalesOrderRepository salesOrderRepository;
         protected readonly ISalesOrderDetailRepository salesOrderDetailRepository;
-        protected readonly ICustomerRepository customerRepository;
+        protected readonly ICustomerRepository customerRepository; 
 
         public SalesOrderService(ISalesOrderRepository salesOrderRepository,
             ISalesOrderDetailRepository salesOrderDetailRepository,
@@ -27,9 +27,14 @@ namespace Order.Service
             this.customerRepository = customerRepository;
         }
 
-        public TableDataModel LoadData(SalesOrderRequestModel requestModel)
+        public Task<SalesOrder> Get(Guid id)
         {
-            var count =  salesOrderRepository.GetRecordCount(t0 => t0.BillCode != "");
+            throw new NotImplementedException();
+        }
+
+        public List<SalesOrder> LoadData(SalesOrderRequestModel requestModel)
+        {
+            var count =  salesOrderRepository.Count(w => w.BillCode != "");
             var orders =  salesOrderRepository.LoadData(t0 => t0.BillCode != "", requestModel.Page, requestModel.Limit);
 
             TableDataModel data = new TableDataModel()
@@ -37,7 +42,7 @@ namespace Order.Service
                 count = count,
                 data = orders
             };
-            return data;
+            return null;
         }
 
         /// <summary>
@@ -45,31 +50,21 @@ namespace Order.Service
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-        public async Task<TableDataModel> LoadDataAsync(SalesOrderRequestModel requestModel)
-        {  
-            var count = await salesOrderRepository.GetRecordCountAsync(t0 => t0.BillCode != "");
-            var orders = await salesOrderRepository.LoadDataAsync(t0 => t0.BillCode != "", requestModel.Page, requestModel.Limit);
-
-            TableDataModel data = new TableDataModel()
-            { 
-                count = count,
-                data = orders
-            };
-            return data;
+        public async Task<List<SalesOrder>> LoadDataAsync(Expression<Func<SalesOrder,bool>> where, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null)
+        {   
+            var orders = await salesOrderRepository.LoadDataAsync(t0 => t0.BillCode != "", intPageIndex, intPageSize, strOrderByFileds);
+             
+            return orders;
         }
         /// <summary>
         /// 加载订单从表的数据
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public async Task<TableDataModel> LoadItemDataAsync(Guid Id)
+        public async Task<List<SalesOrderDetail>> LoadItemDataAsync(Guid Id)
         {
-            var detail = await salesOrderDetailRepository.LoadItemDataByIdAsync(Id);
-            TableDataModel data = new TableDataModel
-            {
-                data = detail
-            };
-            return data;
+            var detail = await salesOrderDetailRepository.LoadDataAsync(w=>w.MainID==Id); 
+            return detail;
         }
     }
 }

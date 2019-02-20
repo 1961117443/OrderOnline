@@ -13,14 +13,14 @@
         page: true,
         height: "full-125",
         limits: [10, 15, 20, 25],
-        limit: 10,
+        limit: 15,
         id: "orderListTable",
         cols: [[
             { type: "checkbox", fixed: "left", width: 50 },
-            { field: "BillCode", title: '订单号', width: 100, align: "center" },
+            { field: "BillCode", title: '订单号', width: 120, align: "center" },
             { field: 'BillDate', title: '订单日期', minWidth: 50, align: "center" },
-            { field: 'CustomerIDCode', title: '客户编号', minWidth: 50, align: "center" },
-            { field: 'CustomerIDName', title: '客户名称', minWidth: 80, align: "center" },
+            { field: 'CustomerCode', title: '客户编号', minWidth: 50, align: "center" },
+            { field: 'CustomerName', title: '客户名称', minWidth: 80, align: "center" },
             { field: 'Remark', title: '备注', align: 'center' },
             { field: 'Maker', title: '制单人', width: 100, align: "center" },
             { field: 'MakeDate', title: '制单时间', minWidth: 80, align: "center" },
@@ -64,8 +64,8 @@
                     body.find("#Id").val(edit.ID);
                     body.find(".BillCode").val(edit.BillCode);
                     body.find(".BillDate").val(edit.BillDate);
-                    body.find(".CustomerIDCode").val(edit.CustomerIDCode);
-                    body.find(".CustomerIDName").val(edit.CustomerIDName); 
+                    body.find(".CustomerCode").val(edit.CustomerIDCode);
+                    body.find(".CustomerName").val(edit.CustomerIDName); 
                     //body.find("input:checkbox[name='IsLock']").prop("checked", edit.IsLock);
                     body.find(".Remark").text(edit.Remark);
                     form.render();

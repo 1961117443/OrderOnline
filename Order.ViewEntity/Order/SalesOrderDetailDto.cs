@@ -7,7 +7,7 @@ namespace Order.ViewEntity
     /// <summary>
     /// 订单从表
     /// </summary>
-    public class SalesOrderDetailView
+    public class SalesOrderDetailDto
     {
         /// <summary>
         /// 主键id
@@ -29,12 +29,12 @@ namespace Order.ViewEntity
         /// <summary>
         /// 型材型号
         /// </summary>
-        public string SectionBarIDCode { get; set; }
+        public string SectionBarCode { get; set; }
 
         /// <summary>
         /// 型材名称
         /// </summary>
-        public string SectionBarIDName { get; set; }
+        public string SectionBarName { get; set; }
         /// <summary>
         /// 表面id
         /// </summary>
@@ -43,7 +43,7 @@ namespace Order.ViewEntity
         /// <summary>
         /// 表面方式
         /// </summary>
-        public string SurfaceIDName { get; set; }
+        public string SurfaceName { get; set; }
 
         /// <summary>
         /// 包装id
@@ -52,7 +52,7 @@ namespace Order.ViewEntity
         /// <summary>
         /// 包装方式
         /// </summary>
-        public string PackingIDName { get; set; }
+        public string PackingName { get; set; }
         /// <summary>
         /// 订单数
         /// </summary>

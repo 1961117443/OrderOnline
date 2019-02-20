@@ -131,9 +131,9 @@ namespace Order.Repository.SqlSugar.BASE
             throw new NotImplementedException();
         }
 
-        public Task<List<TEntity>> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null)
+        public async Task<List<TEntity>> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() => db.Queryable<TEntity>().Where(whereExpression).OrderByIF(!string.IsNullOrEmpty(strOrderByFileds), strOrderByFileds).ToPageList(intPageIndex, intPageSize));
         }
 
         public async Task<bool> Update(TEntity model)
@@ -170,22 +170,22 @@ namespace Order.Repository.SqlSugar.BASE
             return Task.Run(() => func());
         }
 
-        public int GetRecordCount()
+        public int Count()
         {
             return entityDB.Count(w => 1 == 1);
         }
 
-        public int GetRecordCount(Expression<Func<TEntity, bool>> whereExpression)
+        public int Count(Expression<Func<TEntity, bool>> whereExpression)
         {
             return entityDB.Count(whereExpression);
         }
 
-        public async Task<int> GetRecordCountAsync()
+        public async Task<int> CountAsync()
         {
             return await Task.Run(() => entityDB.Count(w => 1 == 1));
         }
 
-        public async Task<int> GetRecordCountAsync(Expression<Func<TEntity, bool>> whereExpression)
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await Task.Run(() => entityDB.Count(whereExpression));
         }

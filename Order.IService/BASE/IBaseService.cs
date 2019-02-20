@@ -36,5 +36,8 @@ namespace Order.IService.BASE
         Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds);
         Task<List<TEntity>> Query(string strWhere, int intPageIndex, int intPageSize, string strOrderByFileds);
         Task<List<TEntity>> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null);
+
+        Task<int> CountAsync();
+        Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
     }
 }

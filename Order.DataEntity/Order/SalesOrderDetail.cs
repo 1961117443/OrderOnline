@@ -8,7 +8,7 @@ namespace Order.DataEntity
     /// <summary>
     /// 订单从表
     /// </summary>
-    public class SalesOrderDetail
+    public partial class SalesOrderDetail
     {
         /// <summary>
         /// 主键id

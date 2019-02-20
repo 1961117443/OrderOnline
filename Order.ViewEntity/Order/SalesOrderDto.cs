@@ -13,7 +13,7 @@ namespace Order.ViewEntity
             DateTimeFormat = "yyyy-MM-dd";
         }
     }
-   public  class SalesOrderView
+   public  class SalesOrderDto
     {
         public Guid ID { get; set; }
         /// <summary>
@@ -37,6 +37,14 @@ namespace Order.ViewEntity
         /// 客户名称
         /// </summary>
         public string CustomerIDName { get; set; }
+        /// <summary>
+        /// 客户编号
+        /// </summary>
+        public string CustomerCode { get; set; }
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string CustomerName { get; set; }
         /// <summary>
         /// 备注
         /// </summary>

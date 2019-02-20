@@ -4,60 +4,31 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Order.DataEntity;
 using Order.IRepository;
-using Order.Repository.SqlSugar.BASE;
-using Order.ViewEntity;
+using Order.Repository.SqlSugar.BASE; 
 using SqlSugar;
+using PageModel = SqlSugar.PageModel;
 
 namespace Order.Repository.SqlSugar
 {
     public class SalesOrderRepository : BaseRepository<SalesOrder>, ISalesOrderRepository
     {
         #region 同步方法 
-        public List<SalesOrderView> LoadData(Expression<Func<SalesOrder, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
+        public List<SalesOrder> LoadData(Expression<Func<SalesOrder, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
-            var data = Db.Queryable<SalesOrder, Customer>((t0, t1) => new object[] { JoinType.Left, t0.CustomerID == t1.ID })
+            return Db.Queryable<SalesOrder>()
                 .Where(whereExpression)
-                .Select((t0, t1) => new SalesOrderView()
-                {
-                    ID = t0.ID,
-                    BillCode = t0.BillCode,
-                    CustomerID = t0.CustomerID,
-                    BillDate = t0.BillDate,
-                    CustomerIDCode = t1.Code,
-                    CustomerIDName = t1.Name,
-                    Remark = t0.Remark,
-                    Maker = t0.Maker,
-                    MakeDate = t0.MakeDate,
-                    Audit = t0.Audit,
-                    AuditDate = t0.AuditDate
-                }).ToList();
-
-            return data;
+                .Mapper(o => o.Customer, o => o.CustomerID)
+                .ToPageList(intPageIndex, intPageSize); 
         }
         #endregion
 
         #region 异步方法
-        public async Task<List<SalesOrderView>> LoadDataAsync(Expression<Func<SalesOrder, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
+        public async Task<List<SalesOrder>> LoadDataAsync(Expression<Func<SalesOrder, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds)
         {
-            var q = Db.Queryable<SalesOrder, Customer>((t0, t1) => new object[] { JoinType.Left, t0.CustomerID == t1.ID })
-                 .Where(whereExpression)
-                 .Select((t0, t1) => new SalesOrderView()
-                 {
-                     ID = t0.ID,
-                     BillCode = t0.BillCode,
-                     CustomerID = t0.CustomerID,
-                     BillDate = t0.BillDate,
-                     CustomerIDCode = t1.Code,
-                     CustomerIDName = t1.Name,
-                     Remark = t0.Remark,
-                     Maker = t0.Maker,
-                     MakeDate = t0.MakeDate,
-                     Audit = t0.Audit,
-                     AuditDate = t0.AuditDate
-                 });
-            var data = await q.ToListAsync();
-            // var data = await Task.Run(() => q.ToList());
-            return data;
+            return await Db.Queryable<SalesOrder>()
+                .Where(whereExpression)
+                .Mapper(o => o.Customer, o => o.CustomerID)
+                .ToPageListAsync(intPageIndex, intPageSize);
         }
         #endregion
     }

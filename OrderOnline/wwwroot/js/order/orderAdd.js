@@ -1,8 +1,15 @@
-﻿layui.use(['form', 'table', 'layer'], function () {
+﻿layui.use(['laydate','form', 'table', 'layer','layedit'], function () {
     var form = layui.form,
+        laydate = layui.laydate,
+        layedit = layui.layedit,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         table = layui.table;
+     
+    //日期
+    laydate.render({
+        elem: '.BillDate'
+    });
 
     //订单从表列表
     var tableIns = table.render({

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Order.Core.Common.Helper;
+using Order.DataEntity;
 using Order.IService;
 using Order.ViewEntity;
 
@@ -12,9 +15,11 @@ namespace OrderOnline.Controllers
     public class OrderController : BaseController
     {
         protected readonly ISalesOrderService salesOrderService;
-        public OrderController(ISalesOrderService salesOrderService)
+        protected readonly IMapper mapper;
+        public OrderController(ISalesOrderService salesOrderService,IMapper mapper)
         {
             this.salesOrderService = salesOrderService;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -41,7 +46,7 @@ namespace OrderOnline.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddOrModify([FromForm]SalesOrderView model)
+        public IActionResult AddOrModify([FromForm]SalesOrderDto model)
         {
             return Json("");
         }
@@ -53,18 +58,31 @@ namespace OrderOnline.Controllers
         /// <returns></returns>
         public async Task<string> LoadData([FromQuery]SalesOrderRequestModel requestModel)
         {
-            var data = await  salesOrderService.LoadDataAsync(requestModel);
-            return JsonHelper.ObjectToJSON(data);
+            Expression<Func<SalesOrder, bool>> exp = w => w.BillCode != "";
+            var count = await salesOrderService.CountAsync(exp);
+            var orders = await salesOrderService.LoadDataAsync(exp, requestModel.Page, requestModel.Limit); 
+            var data = mapper.Map<List<SalesOrderDto>>(orders);
+            TableDataModel tableData = new TableDataModel()
+            {
+                count = count,
+                data = mapper.Map<List<SalesOrderDto>>(orders)
+            };
+            return JsonHelper.ObjectToJSON(tableData);
         }
 
         /// <summary>
         /// 订单从表数据
         /// </summary>
         /// <returns></returns>
-        public async Task<string> LoadItemData([FromQuery]SalesOrderView requestModel)
+        public async Task<string> LoadItemData([FromQuery]SalesOrderDto requestModel)
         { 
-            var data = await salesOrderService.LoadItemDataAsync(requestModel.ID);
-            return JsonHelper.ObjectToJSON(data);
+            var detail = await salesOrderService.LoadItemDataAsync(requestModel.ID);
+            TableDataModel tableData = new TableDataModel()
+            {
+                count = detail.Count(),
+                data = mapper.Map<List<SalesOrderDetailDto>>(detail)
+            };
+            return JsonHelper.ObjectToJSON(tableData);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Order.DataEntity
     /// <summary>
     /// 订单主表
     /// </summary>
-    public class SalesOrder
+    public partial class SalesOrder
     {
         public Guid ID { get; set; }
         /// <summary>

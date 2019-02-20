@@ -16,7 +16,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">订单日期</label>
             <div class="layui-input-block">
-                <input type="date" name="BillDate" class="layui-input BillDate" placeholder="请输入订单日期" lay-verify="required" autocomplete="off" />
+                <input type="text" name="BillDate" class="layui-input BillDate" placeholder="请输入订单日期" lay-verify="required|date" autocomplete="off" />
             </div>
         </div>
     </div>
@@ -35,13 +35,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">客户编号</label>
             <div class="layui-input-block">
-                <input type="text" name="CustomerIDCode" class="layui-input CustomerIDCode" placeholder="请输入客户编号" lay-verify="phone|number" autocomplete="off" />
+                <input type="text" name="CustomerCode" class="layui-input CustomerCode" placeholder="请输入客户编号" lay-verify="phone|number" autocomplete="off" />
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">客户名称</label>
             <div class="layui-input-block">
-                <input type="text" name="CustomerIDName" class="layui-input CustomerIDName" placeholder="请输入客户名称" lay-verify="email" autocomplete="off" />
+                <input type="text" name="CustomerName" class="layui-input CustomerName" placeholder="请输入客户名称" lay-verify="email" autocomplete="off" />
             </div>
         </div>
     </div>

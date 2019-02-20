@@ -17,6 +17,16 @@ namespace Order.Service.BASE
             return await dal.Add(model);
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await dal.CountAsync();
+        }
+
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return await dal.CountAsync(whereExpression);
+        }
+
         public async Task<bool> Delete(TEntity model)
         {
             return await dal.Delete(model);
