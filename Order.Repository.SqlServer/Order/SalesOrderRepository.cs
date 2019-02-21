@@ -31,5 +31,11 @@ namespace Order.Repository.SqlSugar
                 .ToPageListAsync(intPageIndex, intPageSize);
         }
         #endregion
+
+        protected override ISugarQueryable<SalesOrder> GetSugarQuery()
+        {
+            return Db.Queryable<SalesOrder>()
+                .Mapper(o => o.Customer, o => o.CustomerID);
+        }
     }
 }

@@ -189,5 +189,42 @@ namespace Order.Repository.SqlSugar.BASE
         {
             return await Task.Run(() => entityDB.Count(whereExpression));
         }
+
+        private ISugarQueryable<TEntity> _SugarQuery;
+        protected ISugarQueryable<TEntity> SugarQuery
+        {
+            get
+            {
+                if (_SugarQuery == null)
+                {
+                    _SugarQuery = GetSugarQuery();
+                }
+                return _SugarQuery;
+            }
+        }
+        protected virtual ISugarQueryable<TEntity> GetSugarQuery()
+        {
+            return Db.Queryable<TEntity>();
+        }
+
+        public async Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true, int intPageIndex = 0, int intPageSize = 20)
+        {
+            var query = SugarQuery.WhereIF(whereExpression != null, whereExpression).OrderByIF(orderByExpression != null, orderByExpression, isAsc ? OrderByType.Asc : OrderByType.Desc);
+
+            if (intPageIndex > -1 && intPageSize > 0)
+            {
+                return await Task.Run(() => query.ToPageList(intPageIndex, intPageSize));
+            }
+            else
+            {
+                return await Task.Run(() => query.ToList());
+            }
+        }
+
+
+        public async Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true)
+        {
+            return await LoadDataAsync(whereExpression, orderByExpression, isAsc, intPageIndex, intPageSize);
+        }
     }
 }

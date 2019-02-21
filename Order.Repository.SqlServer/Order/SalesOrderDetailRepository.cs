@@ -11,10 +11,18 @@ namespace Order.Repository.SqlSugar
 {
     public class SalesOrderDetailRepository : BaseRepository<SalesOrderDetail>, ISalesOrderDetailRepository
     {
+        protected override ISugarQueryable<SalesOrderDetail> GetSugarQuery()
+        {
+            return Db.Queryable<SalesOrderDetail>()
+                .Mapper(w => w.SectionBar, w => w.SectionBarID)
+                .Mapper(w => w.Surface, w => w.SurfaceID)
+                .Mapper(w => w.Packing, w => w.PackingID);
+        }
         public async Task<List<SalesOrderDetail>> LoadDataAsync(Expression<Func<SalesOrderDetail, bool>> whereExpression, int intPageIndex, int intPageSize, string strOrderByFileds = "")
         {
             var q = Db.Queryable<SalesOrderDetail>()
                 .WhereIF(whereExpression != null, whereExpression)
+                .OrderByIF(!string.IsNullOrEmpty(strOrderByFileds),strOrderByFileds)
                 .Mapper(w => w.SectionBar, w => w.SectionBarID)
                 .Mapper(w => w.Surface, w => w.SurfaceID)
                 .Mapper(w => w.Packing, w => w.PackingID);

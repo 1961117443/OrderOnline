@@ -23,15 +23,14 @@
         id: "orderItemListTable",
         cols: [[
             { type: "checkbox", fixed: "left", width: 50 },
-            { field: "TraceCode", title: '订单跟踪号', width: 120, align: "center" },
-            { field: 'SectionBarIDCode', title: '型材型号', minWidth: 50, align: "center" },
-            { field: 'SectionBarIDName', title: '型材名称', minWidth: 50, align: "center" },
-            { field: 'SurfaceIDName', title: '表面方式', minWidth: 80, align: "center" },
-          //  { field: 'PackingIDName', title: '备注', align: 'center' },
-            { field: 'PackingIDName', title: '包装方式', width: 100, align: "center" },
-            { field: 'TotalQuantity', title: '订单数', minWidth: 80, align: "center" },
-            { field: 'TheoryMeter', title: '理论米重', width: 100, align: "center" },
-            { field: 'OrderLength', title: '订单长度', minWidth: 80, align: "center" },
+            { field: "TraceCode", title: '订单跟踪号', width: 150, align: "center" },
+            { field: 'SectionBarCode', title: '型材型号', minWidth: 100, align: "center" },
+            { field: 'SectionBarName', title: '型材名称', minWidth: 100, align: "center" },
+            { field: 'SurfaceName', title: '表面方式', minWidth: 100, align: "center" },
+            { field: 'PackingName', title: '包装方式', width: 100, align: "center" },
+            { field: 'TotalQuantity', title: '订单数', minWidth: 60, align: "center" },
+            { field: 'TheoryMeter', title: '理论米重', minWidth: 60, align: "center" },
+            { field: 'OrderLength', title: '订单长度', minWidth: 50, align: "center" },
             { title: '操作', minWidth: 80, templet: '#orderItemListBar', fixed: "right", align: "center" }
         ]],
         where: {

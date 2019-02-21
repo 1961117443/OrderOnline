@@ -76,7 +76,7 @@ namespace OrderOnline.Controllers
         /// <returns></returns>
         public async Task<string> LoadItemData([FromQuery]SalesOrderDto requestModel)
         { 
-            var detail = await salesOrderService.LoadItemDataAsync(requestModel.ID);
+            var detail = await salesOrderService.LoadItemDataAsync(requestModel.ID); 
             TableDataModel tableData = new TableDataModel()
             {
                 count = detail.Count(),

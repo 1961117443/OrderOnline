@@ -18,14 +18,15 @@ namespace Order.Service
         {
             this.sectionBarRepository = sectionBarRepository;
         }
-        public List<SectionBarDto> LoadData(Expression<Func<SectionBarDto, bool>> whereExpression)
+        public List<SectionBar> LoadData(Expression<Func<SectionBar, bool>> whereExpression)
         { 
-            return new List<SectionBarDto>();
+            return new List<SectionBar>();
         }
+         
 
-        public Task<List<SectionBarDto>> LoadDataAsync(Expression<Func<SectionBarDto, bool>> whereExpression)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<List<SectionBar>> LoadDataAsync(Expression<Func<SectionBar, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null)
+        //{
+        //    return await sectionBarRepository.LoadDataAsync(whereExpression, intPageIndex, intPageSize);
+        //}
     }
 }

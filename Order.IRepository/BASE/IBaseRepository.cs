@@ -59,5 +59,12 @@ namespace Order.IRepository.BASE
         Task<List<TEntity>> QueryByIDs(object[] lstIds);
         Task<List<TEntity>> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null);
         #endregion
+
+        #region 加载数据
+
+        //Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20);
+        Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true, int intPageIndex = 0, int intPageSize = 20);
+       // Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true);
+        #endregion
     }
 }

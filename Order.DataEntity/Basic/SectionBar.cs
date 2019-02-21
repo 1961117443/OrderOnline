@@ -10,7 +10,6 @@ namespace Order.DataEntity
         public Guid ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-
         public string WallThickness { get; set; }
         [SugarColumn(ColumnName = "Theoreticalweight")]
         public decimal TheoryMeter { get; set; }

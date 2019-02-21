@@ -39,5 +39,10 @@ namespace Order.IService.BASE
 
         Task<int> CountAsync();
         Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
+
+
+        Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20);
+        Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true, int intPageIndex = 0, int intPageSize = 20);
+        Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true);
     }
 }

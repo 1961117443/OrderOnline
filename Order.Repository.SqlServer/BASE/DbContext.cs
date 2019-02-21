@@ -83,7 +83,7 @@ namespace Order.Repository.SqlSugar.BASE
                 {
                     //IsWithNoLockQuery = true,
                     IsAutoRemoveDataCache = true
-                }
+                } 
             });
         }
 

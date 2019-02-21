@@ -15,7 +15,11 @@ namespace OrderOnline.AutoMapperConfig
     {
         public ViewModelToEntityMappingProfile()
         {
-            CreateMap<SalesOrderDto, SalesOrder>(); 
+            CreateMap<SectionBarDto, SectionBar>();
+
+            CreateMap<SalesOrderDto, SalesOrder>();
+            CreateMap<SalesOrderDetailDto, SalesOrderDetail>();
+
         }
     }
 }

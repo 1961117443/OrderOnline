@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Order.IService.BASE
 {
-    public interface IBillService<TEntity,TView>
+    public interface IBillService<TEntity, TView>
     {
-        List<TView> LoadData(Expression<Func<TView, bool>> whereExpression);
-        Task<List<TView>> LoadDataAsync(Expression<Func<TView, bool>> whereExpression);
+        List<TEntity> LoadData(Expression<Func<TEntity, bool>> whereExpression);
+        //Task<List<TEntity>> LoadDataAsync(Expression<Func<TEntity, bool>> whereExpression, int intPageIndex = 0, int intPageSize = 20, string strOrderByFileds = null);
     }
 
 }

@@ -5,17 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Order.Core.Common.Helper;
 using Order.IService;
-using Order.ViewEntity;
-using System.Linq;
+using Order.ViewEntity; 
+using AutoMapper;
+using System.Linq.Expressions;
+using Order.DataEntity;
 
 namespace OrderOnline.Controllers
 {
     public class SectionBarController : BaseController
     {
         protected ISectionBarService sectionBarService;
-        public SectionBarController(ISectionBarService sectionBarService)
+        public SectionBarController(ISectionBarService sectionBarService,IMapper mapper)
         {
             this.sectionBarService = sectionBarService;
+            this.Mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -27,12 +30,15 @@ namespace OrderOnline.Controllers
             return View();
         }
 
-        public IActionResult LoadData()
+        public async Task<IActionResult> LoadData(PageModel requestModel)
         {
-            var data= sectionBarService.LoadData(w => w.Code != "");
+            Expression<Func<SectionBar, bool>> where = w => w.Code != "";
+            var data = await sectionBarService.LoadDataAsync(where, requestModel.Page, requestModel.Limit);
+            var count = await sectionBarService.CountAsync(where);
             TableDataModel tableDataModel = new TableDataModel()
             {
-                data = data
+                count = count,
+                data = Mapper.Map<List<SectionBarDto>>(data)
             };
             return Content(JsonHelper.ObjectToJSON(tableDataModel));
         }

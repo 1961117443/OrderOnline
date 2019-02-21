@@ -21,7 +21,7 @@ namespace Order.Service
             ISalesOrderDetailRepository salesOrderDetailRepository,
             ICustomerRepository customerRepository)
         {
-            this.dal = salesOrderRepository;
+            this.Dal = salesOrderRepository;
             this.salesOrderRepository = salesOrderRepository;
             this.salesOrderDetailRepository = salesOrderDetailRepository;
             this.customerRepository = customerRepository;
@@ -63,7 +63,7 @@ namespace Order.Service
         /// <returns></returns>
         public async Task<List<SalesOrderDetail>> LoadItemDataAsync(Guid Id)
         {
-            var detail = await salesOrderDetailRepository.LoadDataAsync(w=>w.MainID==Id); 
+            var detail = await salesOrderDetailRepository.LoadDataAsync(w=>w.MainID==Id,0,0,"RowNo"); 
             return detail;
         }
     }
