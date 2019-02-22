@@ -20,8 +20,8 @@
            // { field: "Id", title: 'Id', width: 50, align: "center" },
             { field: 'Code', title: '型材型号', minWidth: 50, align: "center" },
             { field: 'Name', title: '型材名称', minWidth: 50, align: "center" },
-            { field: 'Mobile', title: '壁厚', minWidth: 80, align: "center" },
-            { field: 'Email', title: '理论米重', minWidth: 100, align: "center" }, 
+            { field: 'WallThickness', title: '壁厚', minWidth: 80, align: "center" },
+            { field: 'TheoryMeter', title: '理论米重', minWidth: 100, align: "center" }, 
           //  { field: 'Remark', title: '备注', align: 'center' }, 
             { title: '操作', minWidth: 80, templet: '#sectionBarListBar', fixed: "right", align: "center" }
         ]]
@@ -45,27 +45,24 @@
 
     //添加用户
     function addSectionBar(edit) {
-        var tit = "添加用户";
+        var tit = "添加型号";
         if (edit) {
-            tit = "编辑用户";
+            tit = "编辑型号";
         }
         var index = layui.layer.open({
             title: tit,
             type: 2,
             anim: 1,
-            area: ['500px', '90%'],
+            area: ['500px', '50%'],
             content: "/SectionBar/AddOrModify/",
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
                 if (edit) {
-                    body.find("#Id").val(edit.Id);
-                    body.find(".UserName").val(edit.UserName);
-                    body.find(".NickName").val(edit.NickName);
-                    body.find(".RoleId").val(edit.RoleId);
-                    body.find(".Mobile").val(edit.Mobile);
-                    body.find(".Email").val(edit.Email);
-                    body.find("input:checkbox[name='IsLock']").prop("checked", edit.IsLock);
-                    body.find(".Remark").text(edit.Remark);
+                    body.find("#Id").val(edit.ID);
+                    body.find(".Code").val(edit.Code);
+                    body.find(".Name").val(edit.Name);
+                    body.find(".WallThickness").val(edit.WallThickness);
+                    body.find(".TheoryMeter").val(edit.TheoryMeter); 
                     form.render();
                 }
             }

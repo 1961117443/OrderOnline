@@ -18,7 +18,7 @@ namespace Order.IRepository.BASE
         Task<TEntity> First(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, object>> orderByExpression = null, bool isAsc = true);
 
         #region 添加
-        Task<int> Add(TEntity model);
+        Task<bool> Add(TEntity model);
         #endregion
 
         #region 删除

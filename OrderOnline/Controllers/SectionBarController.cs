@@ -25,10 +25,30 @@ namespace OrderOnline.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddOrModify()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<string> AddOrModify(SectionBarDto requestModel)
+        {
+
+            var model = Mapper.Map<SectionBar>(requestModel);
+            var sucess = false;
+            if (model.ID.Equals(Guid.Empty))
+            {
+                sucess= await  sectionBarService.Add(model);
+            }
+            else
+            {
+               sucess = await sectionBarService.Update(model);
+            }
+            ApiResultModel res = new ApiResultModel();
+            return JsonHelper.ObjectToJSON(res);
+        }
+
 
         public async Task<IActionResult> LoadData(PageModel requestModel)
         {

@@ -58,7 +58,7 @@ namespace Order.Service.BASE
         } 
         #endregion
 
-        public async Task<int> Add(TEntity model)
+        public virtual async Task<bool> Add(TEntity model)
         {
             return await Dal.Add(model);
         }

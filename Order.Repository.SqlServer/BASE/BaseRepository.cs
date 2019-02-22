@@ -31,11 +31,11 @@ namespace Order.Repository.SqlSugar.BASE
             entityDB = context.GetEntityDB<TEntity>();
         }
 
-        public async Task<int> Add(TEntity model)
+        public async Task<bool> Add(TEntity model)
         {
-            //   Task.Run(()=>db.Insertable(model).executer)
-            var i = await db.Insertable(model).ExecuteReturnBigIdentityAsync();
-            return (int)i;
+            return await Task.Run(() => db.Insertable(model).ExecuteCommand() > 0);
+           
+           
         }
 
         public async Task<bool> Delete(TEntity model)

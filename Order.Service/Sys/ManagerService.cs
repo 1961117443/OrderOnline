@@ -48,7 +48,8 @@ namespace Order.Service
                 Id = 200,
                 Name = Guid.NewGuid().ToString(),
                 DisplayName = "基础资料",
-                ParentId = 0
+                ParentId = 0,
+                Spread = true
             });
             menus.Add(new MenuNavView()
             {

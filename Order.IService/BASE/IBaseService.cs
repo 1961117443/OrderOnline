@@ -12,7 +12,7 @@ namespace Order.IService.BASE
         Task<TEntity> QueryByID(object objId, bool blnUseCache = false);
         Task<List<TEntity>> QueryByIDs(object[] lstIds);
 
-        Task<int> Add(TEntity model);
+        Task<bool> Add(TEntity model);
 
         Task<bool> DeleteById(object id);
 

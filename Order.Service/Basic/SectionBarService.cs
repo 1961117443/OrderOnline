@@ -13,6 +13,11 @@ namespace Order.Service
 {
     public class SectionBarService : BaseService<SectionBar>, ISectionBarService, IBillService<SectionBar, SectionBarDto>
     {
+        public override Task<bool> Add(SectionBar model)
+        {
+            model.ID = Guid.NewGuid();
+            return base.Add(model);
+        }
         protected ISectionBarRepository sectionBarRepository;
         public SectionBarService(ISectionBarRepository sectionBarRepository)
         {

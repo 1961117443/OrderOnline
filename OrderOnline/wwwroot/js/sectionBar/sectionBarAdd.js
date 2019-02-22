@@ -7,16 +7,13 @@
         //获取防伪标记
         $.ajax({
             type: 'POST',
-            url: '/Manager/AddOrModify/',
+            url: '/SectionBar/AddOrModify/',
             data: {
-                Id: $("#Id").val(),  //主键
-                UserName: $(".UserName").val(),
-                RoleId: $(".RoleId").val(),
-                NickName: $(".NickName").val(),
-                Mobile: $(".Mobile").val(),
-                Email: $(".Email").val(),
-                IsLock: $(".IsLock").get(0).checked,
-                Remark: $(".Remark").val()
+                ID: $("#Id").val(),  //主键
+                Code: $(".Code").val(),
+                Name: $(".Name").val(),
+                WallThickness: $(".WallThickness").val(),
+                TheoryMeter: $(".TheoryMeter").val()
             },
             dataType: "json",
             headers: {
