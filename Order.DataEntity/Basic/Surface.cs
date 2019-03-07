@@ -13,5 +13,8 @@ namespace Order.DataEntity
 
         [SugarColumn(ColumnName = "SurfaceName")]
         public string Name { get; set; }
+
+        public int RowNo { get; set; }
+        public int AutoID { get; set; }
     }
 }

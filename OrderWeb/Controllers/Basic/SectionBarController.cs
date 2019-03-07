@@ -20,6 +20,7 @@ namespace OrderOnline.Controllers
             this.sectionBarService = sectionBarService;
             this.Mapper = mapper;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -49,7 +50,11 @@ namespace OrderOnline.Controllers
             return JsonHelper.ObjectToJSON(res);
         }
 
-
+        /// <summary>
+        /// 加载型号列表数据
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
         public async Task<IActionResult> LoadData(PageModel requestModel)
         {
             Expression<Func<SectionBar, bool>> where = w => w.Code != "";
@@ -61,6 +66,22 @@ namespace OrderOnline.Controllers
                 data = Mapper.Map<List<SectionBarDto>>(data)
             };
             return Content(JsonHelper.ObjectToJSON(tableDataModel));
+        }
+
+        /// <summary>
+        /// 删除型号
+        /// </summary>
+        /// <param name="sectionBarId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<string> Delete(string[] sectionBarId)
+        {
+            if (sectionBarId!=null && sectionBarId.Length>0)
+            {
+                var b = await this.sectionBarService.DeleteByIds(sectionBarId);
+                return JsonHelper.ObjectToJSON(b ? ApiResultModel.Success : ApiResultModel.Fail);
+            }
+            return JsonHelper.ObjectToJSON(ApiResultModel.Success);
         }
     }
 }

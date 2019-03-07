@@ -7,30 +7,26 @@
 
     //型号列表
     var tableIns = table.render({
-        elem: '#sectionBarList',
-        url: '/sectionBar/LoadData/',
+        elem: '#customerList',
+        url: '/customer/LoadData/',
         cellMinWidth: 95,
         page: true,
         height: "full-125",
         limits: [10, 15, 20, 25,50],
         limit: 20,
-        id: "sectionBarListTable",
+        id: "customerListTable",
         cols: [[
             { type: "checkbox", fixed: "left", width: 50 },
-           // { field: "Id", title: 'Id', width: 50, align: "center" },
-            { field: 'Code', title: '型材型号', minWidth: 50, align: "center" },
-            { field: 'Name', title: '型材名称', minWidth: 50, align: "center" },
-            { field: 'WallThickness', title: '壁厚', minWidth: 80, align: "center" },
-            { field: 'TheoryMeter', title: '理论米重', minWidth: 100, align: "center" }, 
-          //  { field: 'Remark', title: '备注', align: 'center' }, 
-            { title: '操作', minWidth: 80, templet: '#sectionBarListBar', fixed: "right", align: "center" }
+            { field: 'Code', title: '客户编号', minWidth: 50, align: "center" },
+            { field: 'Name', title: '客户名称', minWidth: 50, align: "center" },
+            { title: '操作', minWidth: 80, templet: '#customerListBar', fixed: "right", align: "center" }
         ]]
     });
 
     //搜索【此功能需要后台配合，所以暂时没有动态效果演示】
     $(".search_btn").on("click", function () {
         if ($(".searchVal").val() !== '') {
-            table.reload("sectionBarListTable", {
+            table.reload("customerListTable", {
                 page: {
                     curr: 1 //重新从第 1 页开始
                 },
@@ -44,78 +40,76 @@
     });
 
     //添加用户
-    function addSectionBar(edit) {
-        var tit = "添加型号";
+    function addCustomer(edit) {
+        var tit = "添加客户";
         if (edit) {
-            tit = "编辑型号";
+            tit = "编辑客户";
         }
         var index = layui.layer.open({
             title: tit,
             type: 2,
             anim: 1,
             area: ['500px', '50%'],
-            content: "/SectionBar/AddOrModify/",
+            content: "/customer/AddOrModify/",
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
                 if (edit) {
                     body.find("#Id").val(edit.ID);
                     body.find(".Code").val(edit.Code);
                     body.find(".Name").val(edit.Name);
-                    body.find(".WallThickness").val(edit.WallThickness);
-                    body.find(".TheoryMeter").val(edit.TheoryMeter); 
                     form.render();
                 }
             }
         });
     }
-    $(".addSectionBar_btn").click(function () {
-        addSectionBar();
+    $(".addCustomer_btn").click(function () {
+        addCustomer();
     });
 
     //批量删除
     $(".delAll_btn").click(function () {
-        var checkStatus = table.checkStatus('sectionBarListTable'),
+        var checkStatus = table.checkStatus('customerListTable'),
             data = checkStatus.data,
-            sectionBarId = [];
+            Ids = [];
         if (data.length > 0) {
             for (var i in data) {
-                sectionBarId.push(data[i].Id);
-            }
-            layer.confirm('确定删除选中的用户？', { icon: 3, title: '提示信息' }, function (index) {
+                Ids.push(data[i].ID);
+            } 
+            layer.confirm('确定删除选中的客户？', { icon: 3, title: '提示信息' }, function (index) {
                 //获取防伪标记
-                del(sectionBarId);
+                del(Ids);
             });
         } else {
-            layer.msg("请选择需要删除的用户");
+            layer.msg("请选择需要删除的客户");
         }
     });
 
     //列表操作
-    table.on('tool(sectionBarList)', function (obj) {
+    table.on('tool(customerList)', function (obj) {
         var layEvent = obj.event,
             data = obj.data;
 
         if (layEvent === 'edit') { //编辑
-            addSectionBar(data);
+            addCustomer(data);
         } else if (layEvent === 'del') { //删除
-            layer.confirm('确定删除此用户？', { icon: 3, title: '提示信息' }, function (index) {
-                del(data.Id);
+            layer.confirm('确定删除此客户？', { icon: 3, title: '提示信息' }, function (index) {
+                del(data.ID);
             });
         }
     }); 
 
-    function del(sectionBarId) {
+    function del(customerId) { 
         $.ajax({
             type: 'POST',
-            url: '/SectionBar/Delete/',
-            data: { sectionBarId: sectionBarId },
+            url: '/customer/Delete/',
+            data: { Ids: customerId },
             dataType: "json",
             headers: {
                 "X-CSRF-TOKEN-yilezhu": $("input[name='AntiforgeryKey_yilezhu']").val()
             },
             success: function (data) {//res为相应体,function为回调函数
-                layer.msg(data.ResultMsg, {
-                    time: 2000 //20s后自动关闭
+                let index= layer.msg(data.ResultMsg, {
+                    time: 1000 //1s后自动关闭
                 }, function () {
                     tableIns.reload();
                     layer.close(index);

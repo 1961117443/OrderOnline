@@ -16,7 +16,9 @@ namespace OrderOnline.AutoMapperConfig
         public EntityToViewModelMappingProfile()
         {
             #region 基础资料
-            CreateMap<SectionBar, SectionBarDto>();  
+            CreateMap<SectionBar, SectionBarDto>();
+            CreateMap<Customer, CustomerDto>();
+            CreateMap<Surface, SurfaceDto>();
             #endregion
 
             #region 订单管理

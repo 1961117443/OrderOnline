@@ -14,5 +14,26 @@ namespace Order.ViewEntity
         /// 响应消息
         /// </summary>
         public string ResultMsg { get; set; } = "操作成功";
+
+
+        public static ApiResultModel Success
+        {
+            get
+            {
+                return new ApiResultModel();
+            }
+        }
+
+        public static ApiResultModel Fail
+        {
+            get
+            {
+                return new ApiResultModel()
+                {
+                    ResultCode = 100,
+                    ResultMsg = "操作失败！"
+                };
+            } 
+        }
     }
 }
