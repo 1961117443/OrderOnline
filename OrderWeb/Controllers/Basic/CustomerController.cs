@@ -60,6 +60,10 @@ namespace OrderOnline.Controllers
         public async Task<IActionResult> LoadData(PageModel requestModel)
         {
             Expression<Func<Customer, bool>> where = w => w.Code != "";
+            if (!string.IsNullOrEmpty(requestModel.Key))
+            {
+                where = w => w.Code.Contains(requestModel.Key) || w.Name.Contains(requestModel.Key);
+            }
             var data = await customerService.LoadDataAsync(where, requestModel.Page, requestModel.Limit, w => w.AutoID, false);
             var count = await customerService.CountAsync(where);
             TableDataModel tableDataModel = new TableDataModel()

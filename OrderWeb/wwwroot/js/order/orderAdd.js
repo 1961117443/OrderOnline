@@ -5,10 +5,39 @@
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         table = layui.table;
+
+    var tableSelect = layui.tableSelect;
+
      
     //日期
     laydate.render({
         elem: '.BillDate'
+    });
+
+    tableSelect.render({
+        elem: '#CustomerCode',
+        checkedKey: 'ID',
+        searchKey: 'Key',
+        table: {
+            url: '/Customer/LoadData',
+            cols: [[
+                { type: 'radio' },
+                //{ field: 'ID', title: 'ID' },
+                { field: 'Code', title: '客户编号' },
+                { field: 'Name', title: '客户名称' }
+            ]]
+        },
+        done: function (elem, data) {
+            console.log(data);
+            var NEWJSON = [];
+            layui.each(data.data, function (index, item) {
+                // NEWJSON.push(item.Code);
+                elem.val(item.Code);
+                $("#CustomerID").val(item.ID);
+                $("input[name='CustomerName']").val(item.Name);
+            });
+           // elem.val(NEWJSON.join(","));
+        }
     });
 
     //订单从表列表
@@ -17,6 +46,7 @@
         url: '/Order/LoadItemData/',
         cellMinWidth: 95,
         page: false,
+        toolbar: '#toolbarDemo',
         // height: "full-25",
         //limits: [10, 15, 20, 25],
         //limit: 10,
@@ -36,6 +66,23 @@
         where: {
             ID:$("#Id").val()
         }
+    });
+
+    //头工具栏事件
+    table.on('toolbar(orderItemList)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        let data = checkStatus.data;
+        switch (obj.event) {
+            case 'append':
+                layer.alert(JSON.stringify(data));
+                break;
+            case 'copy':
+                layer.msg('选中了：' + data.length + ' 个');
+                break;
+            case 'batch':
+                layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                break;
+        };
     });
 
 
